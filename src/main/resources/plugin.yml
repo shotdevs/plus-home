@@ -1,0 +1,23 @@
+name: plushome
+version: 1.0.1
+main: com.plushome.mc.homeplugin.PlusHomePlugin
+api-version: 1.20
+author: Jules
+description: A modern, user-friendly home system for SMP servers.
+commands:
+  home:
+    description: Opens the home GUI.
+    usage: /<command>
+  sethome:
+    description: Sets a home at your current location.
+    usage: /<command> <name>
+  delhome:
+    description: Deletes a home.
+    usage: /<command> <name>
+permissions:
+  shothomes.use:
+    description: Allows a player to use the home commands.
+    default: true
+  shothomes.set.multiple:
+    description: Allows a player to set multiple homes.
+    default: op

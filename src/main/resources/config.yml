@@ -1,0 +1,9 @@
+# ShotDevsMC-HomePlugin Configuration
+
+# The delay in seconds before a player is teleported to their home.
+# Set to 0 to disable the teleport delay.
+teleport-delay: 5
+
+# The default maximum number of homes a player can set.
+# This can be overridden with permissions (e.g., shothomes.set.multiple.<number>).
+default-max-homes: 5
