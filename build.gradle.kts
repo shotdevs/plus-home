@@ -20,7 +20,7 @@ java {
 
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT")
-    implementation("org.xerial:sqlite-jdbc:3.36.0.3")
+    compileOnly("org.xerial:sqlite-jdbc:3.36.0.3")
 }
 
 tasks.getByName<JavaCompile>("compileJava") {
