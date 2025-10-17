@@ -8,6 +8,7 @@ import com.plushome.mc.homeplugin.listener.RenameListener;
 import com.plushome.mc.homeplugin.storage.DatabaseManager;
 import com.plushome.mc.homeplugin.storage.PlayerPreferencesManager;
 import com.plushome.mc.homeplugin.teleport.TeleportManager;
+import com.plushome.mc.homeplugin.lib.LibraryLoader;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class PlusHomePlugin extends JavaPlugin {
@@ -24,6 +25,9 @@ public final class PlusHomePlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
+        LibraryLoader libraryLoader = new LibraryLoader(getDataFolder());
+        libraryLoader.load();
+
         configManager = new ConfigManager(this);
         configManager.loadConfig();
 
