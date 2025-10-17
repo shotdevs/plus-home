@@ -24,13 +24,14 @@ public class SetHomeCommand implements CommandExecutor {
         }
 
         Player player = (Player) sender;
+        String lang = plugin.getPlayerPreferencesManager().getPlayerLanguage(player.getUniqueId());
         if (!player.hasPermission("shothomes.use")) {
-            player.sendMessage(ChatColor.RED + "You do not have permission to use this command.");
+            player.sendMessage(plugin.getLanguageManager().getMessage(lang, "no-permission"));
             return true;
         }
 
         if (args.length == 0) {
-            player.sendMessage(ChatColor.RED + "Usage: /sethome <name>");
+            player.sendMessage(plugin.getLanguageManager().getMessage(lang, "usage-sethome"));
             return true;
         }
 
@@ -40,18 +41,23 @@ public class SetHomeCommand implements CommandExecutor {
             return true;
         }
 
+        if (homeName.trim().isEmpty() || !homeName.matches("^[a-zA-Z0-9_]+$")) {
+            player.sendMessage(plugin.getLanguageManager().getMessage(lang, "invalid-name"));
+            return true;
+        }
+
         int maxHomes = getMaxHomes(player);
         int currentHomes = plugin.getDatabaseManager().getHomes(player.getUniqueId()).size();
 
         if (currentHomes >= maxHomes) {
-            player.sendMessage(ChatColor.RED + "You have reached your maximum number of homes (" + maxHomes + ").");
+            player.sendMessage(plugin.getLanguageManager().getMessage(lang, "max-homes").replace("%max%", String.valueOf(maxHomes)));
             return true;
         }
 
         Home home = new Home(player.getUniqueId(), homeName, player.getLocation());
         plugin.getDatabaseManager().saveHome(home);
 
-        player.sendMessage(ChatColor.GREEN + "Home '" + homeName + "' has been set!");
+        player.sendMessage(plugin.getLanguageManager().getMessage(lang, "set-home-success").replace("%home%", homeName));
         return true;
     }
 

@@ -141,4 +141,17 @@ public class DatabaseManager {
             e.printStackTrace();
         }
     }
+
+    public void renameHome(java.util.UUID playerUUID, String oldHomeName, String newHomeName) {
+        if (!isConnected()) return;
+        String sql = "UPDATE homes SET home_name = ? WHERE player_uuid = ? AND home_name = ?";
+        try (java.sql.PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, newHomeName);
+            pstmt.setString(2, playerUUID.toString());
+            pstmt.setString(3, oldHomeName);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
