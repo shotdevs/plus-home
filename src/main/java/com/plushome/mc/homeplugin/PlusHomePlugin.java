@@ -2,8 +2,11 @@ package com.plushome.mc.homeplugin;
 
 import com.plushome.mc.homeplugin.command.CommandManager;
 import com.plushome.mc.homeplugin.config.ConfigManager;
+import com.plushome.mc.homeplugin.config.LanguageManager;
 import com.plushome.mc.homeplugin.gui.GUIManager;
+import com.plushome.mc.homeplugin.listener.RenameListener;
 import com.plushome.mc.homeplugin.storage.DatabaseManager;
+import com.plushome.mc.homeplugin.storage.PlayerPreferencesManager;
 import com.plushome.mc.homeplugin.teleport.TeleportManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -11,15 +14,23 @@ public final class PlusHomePlugin extends JavaPlugin {
 
     private DatabaseManager databaseManager;
     private ConfigManager configManager;
+    private LanguageManager languageManager;
+    private PlayerPreferencesManager playerPreferencesManager;
     private CommandManager commandManager;
     private GUIManager guiManager;
     private TeleportManager teleportManager;
+    private RenameListener renameListener;
 
     @Override
     public void onEnable() {
         // Plugin startup logic
         configManager = new ConfigManager(this);
         configManager.loadConfig();
+
+        languageManager = new LanguageManager(this);
+        languageManager.loadLanguages();
+
+        playerPreferencesManager = new PlayerPreferencesManager(this);
 
         databaseManager = new DatabaseManager(this);
         databaseManager.connect();
@@ -32,6 +43,9 @@ public final class PlusHomePlugin extends JavaPlugin {
 
         teleportManager = new TeleportManager(this);
         getServer().getPluginManager().registerEvents(new com.plushome.mc.homeplugin.teleport.TeleportListener(this), this);
+
+        renameListener = new RenameListener(this);
+        getServer().getPluginManager().registerEvents(renameListener, this);
 
         getLogger().info("plushome has been enabled!");
     }
@@ -61,5 +75,17 @@ public final class PlusHomePlugin extends JavaPlugin {
 
     public TeleportManager getTeleportManager() {
         return teleportManager;
+    }
+
+    public RenameListener getRenameListener() {
+        return renameListener;
+    }
+
+    public LanguageManager getLanguageManager() {
+        return languageManager;
+    }
+
+    public PlayerPreferencesManager getPlayerPreferencesManager() {
+        return playerPreferencesManager;
     }
 }

@@ -1,10 +1,12 @@
-# plushome
+# PlusHome
 
 A modern, user-friendly home system for SMP servers – with GUI support, teleport delay, and movement cancelation. This plugin provides a clean and intuitive way for players to manage their homes.
 
 ## Features
 - **/home command** to open a beautiful, modern GUI.
-- **Set and delete homes** easily through commands.
+- **Set, rename, and delete homes** easily through commands and a settings menu.
+- **Per-home settings** accessible via right-click in the GUI.
+- **Language selection menu** to change the plugin's language.
 - **Configurable teleport delay** for fair gameplay.
 - **Movement during the delay cancels teleportation**.
 - **Supports multiple homes per player**, with limits configurable via permissions.
@@ -17,8 +19,14 @@ A modern, user-friendly home system for SMP servers – with GUI support, telepo
 ## GUI
 The `/home` command opens a GUI where players can:
 - **View all their homes:** Each home is represented by a blue bed.
-- **Teleport to a home:** Simply click on a home to start the teleportation.
-- **Delete a home:** Shift-click on a home to delete it.
+- **Teleport to a home:** Simply left-click on a home to start the teleportation.
+- **Open home settings:** Right-click on a home to open a settings menu.
+- **Open language settings:** Click the comparator in the bottom-right corner to open the language selection menu.
+
+### Home Settings
+The home settings menu allows players to:
+- **Rename a home:** Click the name tag to start the renaming process in chat.
+- **Delete a home:** Click the barrier to open a confirmation menu to delete the home.
 
 ## Permissions
 - `plushomes.use` - Allows a player to use the `/home`, `/sethome`, and `/delhome` commands. (Default: `true`)
