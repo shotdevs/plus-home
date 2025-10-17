@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.plushome.mc"
-version = "1.0.2"
+version = "1.0.3"
 
 repositories {
     mavenCentral()
